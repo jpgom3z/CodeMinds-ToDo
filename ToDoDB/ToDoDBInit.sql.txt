@@ -1,0 +1,44 @@
+IF NOT EXISTS (SELECT * FROM sys.databases WHERE [name] = 'ToDoDB')
+BEGIN
+	CREATE DATABASE ToDoDB
+END
+GO
+
+USE ToDoDB
+GO
+
+-- CREATE STATE
+IF NOT EXISTS (SELECT * FROM sys.sysobjects WHERE [name] = 'State' AND xtype = 'U')
+BEGIN 
+	CREATE TABLE [State](
+		Id INT NOT NULL,
+		[Name] VARCHAR(50) NOT NULL,
+		CONSTRAINT PKState PRIMARY KEY (Id)
+	)
+END
+GO			
+
+-- CREATE TASK
+IF NOT EXISTS (SELECT * FROM sys.sysobjects WHERE [name] = 'Task' AND xtype = 'U')
+BEGIN
+	CREATE TABLE Task(
+		Id INT NOT NULL IDENTITY(1,1),
+		Description NVARCHAR(255) NOT NULL,
+		DueDate DATETIME2 NOT NULL,
+		StateId INT NOT NULL,
+		CONSTRAINT PKTask PRIMARY KEY (Id),
+		CONSTRAINT FKStateTaskStateId FOREIGN KEY (StateId) REFERENCES [State] (Id)
+	)
+END
+GO
+
+--INSERT STATE DATA:
+IF NOT EXISTS (SELECT * FROM State WHERE Id = 1)
+BEGIN
+	INSERT INTO State (Id, Name) VALUES (1, 'Pending')
+END
+
+IF NOT EXISTS (SELECT * FROM State WHERE Id = 2)
+BEGIN
+	INSERT INTO State (Id, Name) VALUES (2, 'Completed')
+END
