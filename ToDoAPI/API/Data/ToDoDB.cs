@@ -16,15 +16,27 @@ public partial class ToDoDB : DbContext
     {
     }
 
-    public virtual DbSet<State> State { get; set; }
+    public virtual DbSet<Chore> Chore { get; set; }
 
-    public virtual DbSet<Task> Task { get; set; }
+    public virtual DbSet<State> State { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseSqlServer("Name=ToDoDB");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<Chore>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PKChore");
+
+            entity.Property(e => e.Description).HasMaxLength(255);
+
+            entity.HasOne(d => d.State).WithMany(p => p.Chore)
+                .HasForeignKey(d => d.StateId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FKStateChoreStateId");
+        });
+
         modelBuilder.Entity<State>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PKState");
@@ -33,18 +45,6 @@ public partial class ToDoDB : DbContext
             entity.Property(e => e.Name)
                 .HasMaxLength(50)
                 .IsUnicode(false);
-        });
-
-        modelBuilder.Entity<Task>(entity =>
-        {
-            entity.HasKey(e => e.Id).HasName("PKTask");
-
-            entity.Property(e => e.Description).HasMaxLength(255);
-
-            entity.HasOne(d => d.State).WithMany(p => p.Task)
-                .HasForeignKey(d => d.StateId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FKStateTaskStateId");
         });
 
         OnModelCreatingPartial(modelBuilder);

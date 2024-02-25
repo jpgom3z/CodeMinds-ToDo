@@ -18,16 +18,16 @@ BEGIN
 END
 GO			
 
--- CREATE TASK
-IF NOT EXISTS (SELECT * FROM sys.sysobjects WHERE [name] = 'Task' AND xtype = 'U')
+-- CREATE CHORE
+IF NOT EXISTS (SELECT * FROM sys.sysobjects WHERE [name] = 'Chore' AND xtype = 'U')
 BEGIN
-	CREATE TABLE Task(
+	CREATE TABLE Chore(
 		Id INT NOT NULL IDENTITY(1,1),
 		Description NVARCHAR(255) NOT NULL,
 		DueDate DATETIME2 NOT NULL,
 		StateId INT NOT NULL,
-		CONSTRAINT PKTask PRIMARY KEY (Id),
-		CONSTRAINT FKStateTaskStateId FOREIGN KEY (StateId) REFERENCES [State] (Id)
+		CONSTRAINT PKChore PRIMARY KEY (Id),
+		CONSTRAINT FKStateChoreStateId FOREIGN KEY (StateId) REFERENCES [State] (Id)
 	)
 END
 GO
