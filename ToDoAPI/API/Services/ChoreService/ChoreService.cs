@@ -20,14 +20,27 @@ namespace API.Services
                 .Include(s => s.State);
         }
 
-        public Task InsertChore(Chore entity)
+        public async Task<Chore?> FindChore(int id)
         {
-            throw new NotImplementedException();
+            return await this._database
+                .Chore
+                .Include(s => s.State)
+                .Where(c => c.Id == id)
+                .FirstOrDefaultAsync();
         }
 
-        public Task UpdateChore(Chore entity)
+        public async Task InsertChore(Chore entity)
         {
-            throw new NotImplementedException();
+            this._database.Chore.Add(entity);
+            await this._database.SaveChangesAsync();
+            await this._database.Entry(entity).Reference(s => s.State).LoadAsync();
+        }
+
+        public async Task UpdateChore(Chore entity)
+        {
+            this._database.Chore.Update(entity);
+            await this._database.SaveChangesAsync();
+            await this._database.Entry(entity).Reference(s => s.State).LoadAsync();
         }
 
         public async Task DeleteChore(Chore entity)
