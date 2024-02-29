@@ -22,4 +22,9 @@ namespace API.DataTransferObjects
 
         public int? StateId { get; set; } = null!;
     }
+
+    public class FilterChoreDTO
+    {
+        public int? StateId { get; set; }
+    }
 }

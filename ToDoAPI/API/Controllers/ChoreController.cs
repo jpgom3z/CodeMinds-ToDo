@@ -1,4 +1,5 @@
-﻿using API.Data.Models;
+﻿using API.Data.Filters;
+using API.Data.Models;
 using API.DataTransferObjects;
 using API.Services;
 using API.Validators;
@@ -26,10 +27,10 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<APIResponse>> ListChores()
+        public async Task<ActionResult<APIResponse>> ListChores([FromQuery] FilterChoreDTO data)
         {
-
-            List<Chore> list = await this._choreService.ListChores()
+            ChoreListFilter filter = this._mapper.Map<FilterChoreDTO, ChoreListFilter>(data);
+            List<Chore> list = await this._choreService.ListChores(filter)
                                     .OrderBy(c => c.DueDate)
                                     .ToListAsync();
 

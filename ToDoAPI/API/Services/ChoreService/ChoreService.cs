@@ -1,4 +1,5 @@
 ﻿using API.Data;
+using API.Data.Filters;
 using API.Data.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,11 +14,13 @@ namespace API.Services
             this._database = database;
         }
 
-        public IQueryable<Chore> ListChores()
+        public IQueryable<Chore> ListChores(ChoreListFilter? filter = null)
         {
+            filter = filter ?? new ChoreListFilter();
             return this._database
                 .Chore
-                .Include(s => s.State);
+                .Include(c => c.State)
+                .Where(c => !filter.StateId.HasValue || c.StateId == filter.StateId);
         }
 
         public async Task<Chore?> FindChore(int id)
