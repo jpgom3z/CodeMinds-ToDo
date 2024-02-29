@@ -1,5 +1,7 @@
 using API.Data;
 using API.Services;
+using API.Validators;
+using API.Validators.ChoreValidator;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +15,7 @@ builder.Services.AddScoped<IChoreService, ChoreService>();
 builder.Services.AddScoped<IStateService, StateService>();
 
 //VALIDATORS
+builder.Services.AddScoped<IChoreValidator, ChoreValidator>();
 
 
 var app = builder.Build();

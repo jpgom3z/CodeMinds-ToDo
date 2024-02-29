@@ -16,9 +16,9 @@ namespace API.DataTransferObjects
 
     public class InsertUpdateChoreDTO
     {
-        public string Description { get; set; } = null!;
+        public string? Description { get; set; } = null!;
 
-        public DateTime DueDate { get; set; }
+        public DateTime? DueDate { get; set; }
 
         public int? StateId { get; set; } = null!;
     }
