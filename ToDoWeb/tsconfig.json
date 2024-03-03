@@ -27,7 +27,8 @@
     "paths": {
       "@tasks/*":["src/app/modules/tasks/*"],
       "@shared/*":["src/app/modules/shared/*"],
-      "@services/*":["src/app/services/*"]
+      "@services/*":["src/app/services/*"],
+      "@models/*":["src/app/models/*"]
     }
   },
   "angularCompilerOptions": {
