@@ -1,4 +1,19 @@
-<p>shared main works!</p>
+<header>
+    <div class="title-container">
+        <h1>To-Do App</h1>
+    </div>
+    <nav>
+        <ul>
+            <li>
+                <a routerLink="/">PENDING</a>
+            </li>
+            <li>
+                <a routerLink="/completed">COMPLETED</a>
+            </li>
+        </ul>
+    </nav>
+    <button class="material-icons-sharp" type="button" (click)="changeTheme()">{{themes[theme]}}_mode</button>
+</header>
 <main>
     <router-outlet></router-outlet>
 </main>
