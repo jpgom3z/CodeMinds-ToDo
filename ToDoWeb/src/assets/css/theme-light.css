@@ -1,0 +1,11 @@
+body.light {
+    /* LAYOUT */
+    --top-bar-background: #f3f3f3;
+    --body-background: #e0e0e0;
+    --main-text-color: #333;
+    --main-hover-background: rgba(0, 0, 0, 0.1);
+    --color-scrollbar-light: rgba(0, 0, 0, 0.1);
+
+    /* TASKS */
+    --task-list-item-background: #c0c0c0;
+}
