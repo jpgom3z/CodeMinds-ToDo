@@ -1,11 +1,11 @@
-<div class="task-card">
+<div *ngFor="let chore of chores" class="task-card">
     <div class="task-description">
-      <h4>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eveniet quos consequuntur deleniti libero quidem nesciunt, voluptas sunt. Nobis explicabo sequi quam officiis, ducimus quisquam. Voluptate nobis inventore obcaecati. Illo, eos?</h4>
+      <h4>{{chore.description}}</h4>
     </div>
     <div class="details-container">
       <div class="status-date-container">
-        <p>Status: COMPLETED</p>
-        <p>Due Date: 2024-03-01</p>
+        <p>Status: {{chore.state.name}}</p>
+        <p>Due Date: {{chore.dueDate}}</p>
       </div>
       <div class="buttons-container">
         <button class="edit-button">Edit</button>
@@ -13,3 +13,4 @@
       </div>
     </div>
   </div>
+  
