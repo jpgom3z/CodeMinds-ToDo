@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ApiResponse, Chore } from '@models/chore';
+import { Chore, ChoreData } from '@models/chore';
 import { ChoreService } from '@services/chore/chore.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { ChoreService } from '@services/chore/chore.service';
   styleUrl: './completed.component.css'
 })
 export class CompletedComponent {
-  public response: ApiResponse;
+  public response: ChoreData;
   public chores: Chore[];
 
   constructor(
@@ -20,7 +20,7 @@ export class CompletedComponent {
   }
 
   public ngOnInit(): void {
-    this.choreService.list(2).subscribe((response: ApiResponse) => {
+    this.choreService.list(2).subscribe((response: ChoreData) => {
       this.chores = response.data;
     });
   }

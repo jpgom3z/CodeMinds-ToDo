@@ -1,6 +1,6 @@
 import { State } from "./state";
 
-export interface ApiResponse {
+export interface ChoreData {
     statusCode: number;
     success: boolean;
     messages: string[];

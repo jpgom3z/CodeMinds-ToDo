@@ -1,7 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ApiResponse, Chore } from '@models/chore';
+import { ChoreData, Chore } from '@models/chore';
 import { ChoreService } from '@services/chore/chore.service';
+import { MatDialog, MatDialogConfig, MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import {MatButtonModule} from '@angular/material/button';
+import { UpdateModal } from '@shared/modals/update/update.modal';
+import { DeleteData } from '@models/DeleteData';
+import { DeleteModal } from '@shared/modals/delete/delete.modal';
 
 @Component({
   selector: 'app-pending',
@@ -9,18 +14,50 @@ import { ChoreService } from '@services/chore/chore.service';
   styleUrl: './pending.component.css'
 })
 export class PendingComponent {
-  public response: ApiResponse;
+  public response: ChoreData;
   public chores: Chore[];
 
   constructor(
     private choreService: ChoreService,
-    private router: Router
+    private router: Router,
+    public dialog: MatDialog
   ){
     this.chores = [];
   }
 
+  public openDeleteDialog(id: number) {
+    const choreId = id;
+    const dialogRef = this.dialog.open(DeleteModal);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        console.log('A chore will be deleted')
+        this.choreService.delete(choreId).subscribe((response: ChoreData) => {
+          console.log(response.messages);
+          this.ngOnInit();
+        });
+      }
+      console.log(`Dialog result: ${result}`);
+    })
+  }
+
+  public openUpdateDialog(id: number) {
+    const choreId = id;
+    console.log(choreId);
+    const dialogRef = this.dialog.open(UpdateModal, {
+      height: '400px',
+      width: '600px',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+      console.log(choreId);
+    })
+
+  }
+
   public ngOnInit(): void {
-    this.choreService.list(1).subscribe((response: ApiResponse) => {
+    this.choreService.list(1).subscribe((response: ChoreData) => {
       this.chores = response.data;
     });
   }
