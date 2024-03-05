@@ -10,15 +10,16 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {FormsModule} from '@angular/forms';
-import { DeleteSnackbar } from './snackbars/delete/delete/delete.snackbar';
+
+
+
 
 
 @NgModule({
   declarations: [
     MainLayout,
     UpdateModal,
-    DeleteModal,
-    DeleteSnackbar
+    DeleteModal
   ],
   imports: [
     CommonModule,

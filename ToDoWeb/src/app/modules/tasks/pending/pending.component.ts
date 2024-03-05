@@ -7,6 +7,11 @@ import {MatButtonModule} from '@angular/material/button';
 import { UpdateModal } from '@shared/modals/update/update.modal';
 import { DeleteData } from '@models/DeleteData';
 import { DeleteModal } from '@shared/modals/delete/delete.modal';
+import {
+  MatSnackBar,
+  MatSnackBarHorizontalPosition,
+  MatSnackBarVerticalPosition,
+} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-pending',
@@ -16,14 +21,18 @@ import { DeleteModal } from '@shared/modals/delete/delete.modal';
 export class PendingComponent {
   public response: ChoreData;
   public chores: Chore[];
+  horizontalPosition: MatSnackBarHorizontalPosition = 'right';
+  verticalPosition: MatSnackBarVerticalPosition = 'top'
 
   constructor(
     private choreService: ChoreService,
     private router: Router,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private snackBar: MatSnackBar
   ){
     this.chores = [];
   }
+
 
   public openDeleteDialog(id: number) {
     const choreId = id;
@@ -35,6 +44,7 @@ export class PendingComponent {
         this.choreService.delete(choreId).subscribe((response: ChoreData) => {
           console.log(response.messages);
           this.ngOnInit();
+          this.openSnackBar('A task has been deleted', 'Dismiss');
         });
       }
       console.log(`Dialog result: ${result}`);
@@ -53,7 +63,13 @@ export class PendingComponent {
       console.log(`Dialog result: ${result}`);
       console.log(choreId);
     })
+  }
 
+  public openSnackBar(message: string, actionText: string) {
+    this.snackBar.open(message, actionText, {
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+    })
   }
 
   public ngOnInit(): void {
