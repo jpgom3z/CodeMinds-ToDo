@@ -7,9 +7,6 @@ import {MatButtonModule} from '@angular/material/button';
 import { UpdateModal } from '@shared/modals/update/update.modal';
 import { DeleteData } from '@models/DeleteData';
 import { DeleteModal } from '@shared/modals/delete/delete.modal';
-<<<<<<< Updated upstream
-
-=======
 import {
   MatSnackBar,
   MatSnackBarHorizontalPosition,
@@ -17,7 +14,8 @@ import {
 } from '@angular/material/snack-bar';
 import { CreateData } from '@models/CreateData';
 import { CreateModal } from '@shared/modals/create/create.modal';
->>>>>>> Stashed changes
+
+
 @Component({
   selector: 'app-pending',
   templateUrl: './pending.component.html',
@@ -26,17 +24,18 @@ import { CreateModal } from '@shared/modals/create/create.modal';
 export class PendingComponent {
   public response: ChoreData;
   public chores: Chore[];
+  horizontalPosition: MatSnackBarHorizontalPosition = 'right';
+  verticalPosition: MatSnackBarVerticalPosition = 'top'
 
   constructor(
     private choreService: ChoreService,
     private router: Router,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private snackBar: MatSnackBar
   ){
     this.chores = [];
   }
 
-<<<<<<< Updated upstream
-=======
   public openCreateDialog(){
     const dialogRef = this.dialog.open(CreateModal, {
       height: '400px',
@@ -48,7 +47,6 @@ export class PendingComponent {
     })
   }
 
->>>>>>> Stashed changes
   public openDeleteDialog(id: number) {
     const choreId = id;
     const dialogRef = this.dialog.open(DeleteModal);
@@ -59,6 +57,7 @@ export class PendingComponent {
         this.choreService.delete(choreId).subscribe((response: ChoreData) => {
           console.log(response.messages);
           this.ngOnInit();
+          this.openSnackBar('A task has been deleted', 'Dismiss');
         });
       }
       console.log(`Dialog result: ${result}`);
@@ -77,7 +76,13 @@ export class PendingComponent {
       console.log(`Dialog result: ${result}`);
       console.log(choreId);
     })
+  }
 
+  public openSnackBar(message: string, actionText: string) {
+    this.snackBar.open(message, actionText, {
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+    })
   }
 
   public ngOnInit(): void {
