@@ -7,7 +7,17 @@ import {MatButtonModule} from '@angular/material/button';
 import { UpdateModal } from '@shared/modals/update/update.modal';
 import { DeleteData } from '@models/DeleteData';
 import { DeleteModal } from '@shared/modals/delete/delete.modal';
+<<<<<<< Updated upstream
 
+=======
+import {
+  MatSnackBar,
+  MatSnackBarHorizontalPosition,
+  MatSnackBarVerticalPosition,
+} from '@angular/material/snack-bar';
+import { CreateData } from '@models/CreateData';
+import { CreateModal } from '@shared/modals/create/create.modal';
+>>>>>>> Stashed changes
 @Component({
   selector: 'app-pending',
   templateUrl: './pending.component.html',
@@ -25,6 +35,20 @@ export class PendingComponent {
     this.chores = [];
   }
 
+<<<<<<< Updated upstream
+=======
+  public openCreateDialog(){
+    const dialogRef = this.dialog.open(CreateModal, {
+      height: '400px',
+      width: '400px',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+    })
+  }
+
+>>>>>>> Stashed changes
   public openDeleteDialog(id: number) {
     const choreId = id;
     const dialogRef = this.dialog.open(DeleteModal);
