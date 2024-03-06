@@ -4,6 +4,10 @@ import { CommonModule } from '@angular/common';
 import { TasksRoutingModule } from './tasks-routing.module';
 import { PendingComponent } from './pending/pending.component';
 import { CompletedComponent } from './completed/completed.component';
+import { SharedModule } from '@shared/shared.module';
+import { UpdateModal } from '@shared/modals/update/update.modal';
+import { DeleteModal } from '@shared/modals/delete/delete.modal';
+
 
 
 @NgModule({
@@ -13,7 +17,8 @@ import { CompletedComponent } from './completed/completed.component';
   ],
   imports: [
     CommonModule,
-    TasksRoutingModule
+    TasksRoutingModule,
+    SharedModule
   ]
 })
 export class TasksModule { }
