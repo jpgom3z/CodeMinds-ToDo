@@ -12,6 +12,9 @@ import {
   MatSnackBarHorizontalPosition,
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
+import { CreateData } from '@models/CreateData';
+import { CreateModal } from '@shared/modals/create/create.modal';
+
 
 @Component({
   selector: 'app-pending',
@@ -33,6 +36,16 @@ export class PendingComponent {
     this.chores = [];
   }
 
+  public openCreateDialog(){
+    const dialogRef = this.dialog.open(CreateModal, {
+      height: '400px',
+      width: '400px',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+    })
+  }
 
   public openDeleteDialog(id: number) {
     const choreId = id;
