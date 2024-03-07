@@ -2,17 +2,14 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ChoreData, Chore } from '@models/chore';
 import { ChoreService } from '@services/chore/chore.service';
-import { MatDialog, MatDialogConfig, MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import {MatButtonModule} from '@angular/material/button';
+import { MatDialog } from '@angular/material/dialog';
 import { UpdateModal } from '@shared/modals/update/update.modal';
-import { DeleteData } from '@models/modal';
 import { DeleteModal } from '@shared/modals/delete/delete.modal';
 import {
   MatSnackBar,
   MatSnackBarHorizontalPosition,
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
-import { CreateUpdateData } from '@models/modal';
 import { CreateModal } from '@shared/modals/create/create.modal';
 
 
