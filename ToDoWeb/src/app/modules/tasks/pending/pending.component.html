@@ -6,8 +6,8 @@
         <h4>{{chore.description}}</h4>
       </div>
       <div class="details-container">
-        <div class="status-date-container">
-          <p>Status: {{chore.state.name}}</p>
+        <div class="status-date-container" [class]="pendingExpired(chore.dueDate)">
+          <p class="status">{{chore.state.name}}</p>
           <p>Due Date: {{ chore.dueDate.split('T')[0] }}</p>
         </div>
         <div class="buttons-container">

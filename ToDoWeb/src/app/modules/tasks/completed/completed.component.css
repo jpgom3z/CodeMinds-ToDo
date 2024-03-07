@@ -23,12 +23,16 @@
   }
   
   .status-date-container {
-    background: var(--calm-button-background);
+    background: var(--neutral-button-background);
     border: 0;
     margin: 1rem;
     padding: 1rem;
     font-size: 1.8rem;
     border: 0.2rem;
+  }
+
+  .status {
+    font-weight: bold;
   }
   
   button {

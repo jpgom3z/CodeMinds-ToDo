@@ -19,5 +19,6 @@
 </mat-dialog-content>
 <mat-dialog-actions style="display: flex; justify-content: center;">
   <button mat-button [mat-dialog-close]="false" (click)="onNoClick()">No Thanks</button>
-  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
+  <button mat-button [mat-dialog-close]="data" [disabled]="data.description === '' || data.dueDate === null || data.stateId === null">Ok</button>
 </mat-dialog-actions>
+
