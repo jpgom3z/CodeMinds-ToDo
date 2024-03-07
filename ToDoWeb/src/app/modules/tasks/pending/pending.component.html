@@ -11,7 +11,7 @@
           <p>Due Date: {{ chore.dueDate.split('T')[0] }}</p>
         </div>
         <div class="buttons-container">
-          <button class="edit-button" (click)="openUpdateDialog(chore.id)">Edit</button>
+          <button class="edit-button" (click)="openUpdateDialog(chore)">Edit</button>
           <button class="delete-button" (click)="openDeleteDialog(chore.id)">Delete</button>
         </div>
       </div>

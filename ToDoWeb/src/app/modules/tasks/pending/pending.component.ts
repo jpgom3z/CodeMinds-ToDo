@@ -5,14 +5,14 @@ import { ChoreService } from '@services/chore/chore.service';
 import { MatDialog, MatDialogConfig, MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
 import { UpdateModal } from '@shared/modals/update/update.modal';
-import { DeleteData } from '@models/DeleteData';
+import { DeleteData } from '@models/modal';
 import { DeleteModal } from '@shared/modals/delete/delete.modal';
 import {
   MatSnackBar,
   MatSnackBarHorizontalPosition,
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
-import { CreateData } from '@models/CreateData';
+import { CreateUpdateData } from '@models/modal';
 import { CreateModal } from '@shared/modals/create/create.modal';
 
 
@@ -43,8 +43,40 @@ export class PendingComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      if(result){
       console.log(result);
-    })
+      this.choreService.create(result).subscribe((response: ChoreData) => {
+        console.log(response.messages);
+      this.ngOnInit();
+      this.openSnackBar('New task has been created!', 'Dismiss');
+      })
+    }
+    });
+  }
+
+  public openUpdateDialog(entity: Chore) {
+    const chore = entity;
+    const dialogRef = this.dialog.open(UpdateModal, {
+      height: '400px',
+      width: '600px',
+      data : {
+        id: chore.id,
+        description: chore.description,
+        dueDate: chore.dueDate.split('T')[0],
+        stateId: chore.state.id
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        console.log(result);
+        this.choreService.update(result, result.id).subscribe((response: ChoreData) => {
+          console.log(response.messages);
+        this.ngOnInit();
+        this.openSnackBar('Task has been modified!', 'Dismiss');
+        })
+      }
+    });
   }
 
   public openDeleteDialog(id: number) {
@@ -53,6 +85,7 @@ export class PendingComponent {
 
     dialogRef.afterClosed().subscribe(result => {
       if(result){
+        console.log();
         console.log('A chore will be deleted')
         this.choreService.delete(choreId).subscribe((response: ChoreData) => {
           console.log(response.messages);
@@ -61,20 +94,6 @@ export class PendingComponent {
         });
       }
       console.log(`Dialog result: ${result}`);
-    })
-  }
-
-  public openUpdateDialog(id: number) {
-    const choreId = id;
-    console.log(choreId);
-    const dialogRef = this.dialog.open(UpdateModal, {
-      height: '400px',
-      width: '600px',
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-      console.log(choreId);
     })
   }
 
