@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MainLayout } from './layouts/main/main.layout';
-import { UpdateModal } from './modals/update/update.modal';
 import { DeleteModal } from './modals/delete/delete.modal';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
@@ -14,13 +13,15 @@ import { CreateModal } from './modals/create/create.modal';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatSelectModule} from '@angular/material/select';
 import {MatNativeDateModule} from '@angular/material/core';
+import { UpdateModal } from './modals/update/update.modal';
+
 
 @NgModule({
   declarations: [
     MainLayout,
-    UpdateModal,
     DeleteModal,
-    CreateModal
+    CreateModal,
+    UpdateModal
   ],
   imports: [
     CommonModule,

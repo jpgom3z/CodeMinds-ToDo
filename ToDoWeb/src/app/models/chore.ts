@@ -13,3 +13,9 @@ export interface Chore {
     dueDate: string;
     state: State;
   }
+
+  export interface CreateChore {
+    description: string;
+    dueDate: string;
+    state: number;
+  }
