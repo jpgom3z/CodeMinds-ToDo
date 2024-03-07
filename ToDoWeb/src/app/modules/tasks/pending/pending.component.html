@@ -8,7 +8,7 @@
       <div class="details-container">
         <div class="status-date-container">
           <p>Status: {{chore.state.name}}</p>
-          <p>Due Date: {{chore.dueDate}}</p>
+          <p>Due Date: {{ chore.dueDate.split('T')[0] }}</p>
         </div>
         <div class="buttons-container">
           <button class="edit-button" (click)="openUpdateDialog(chore.id)">Edit</button>
