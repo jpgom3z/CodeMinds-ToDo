@@ -1,0 +1,102 @@
+.new-task-container {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  padding: 0 1rem 1rem 1rem;
+}
+
+.task-card {
+  background-color: var(--task-list-item-background);
+  padding: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.task-description {
+  width: 100%;
+}
+
+.task-status {
+  display: flex;
+  vertical-align: middle;
+}
+
+.details-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.status-date-container {
+  border: 0;
+  margin: 1rem;
+  padding: 1rem;
+  font-size: 1.8rem;
+  border: 0.2rem;
+}
+
+.status {
+  font-weight: bold;
+}
+
+.expired-date {
+  background: var(--alert-button-background);
+}
+
+.almost-expired-date {
+  background: var(--mild-button-background);
+}
+
+.valid-date {
+  background: var(--calm-button-background);
+}
+
+button {
+  border: 0;
+  margin: 1rem;
+  padding: 1rem;
+  font-size: 1.8rem;
+  font-weight: 600;
+  border: 0.2rem;
+  background: none;
+  color: var(--main-text-color);
+  border-radius: 0.2rem;
+  transition: background-color 0.2s linear;
+}
+
+.delete-button:hover {
+  background: var(--alert-button-background);
+}
+
+.edit-button:hover {
+  background: var(--neutral-button-background);
+}
+
+.new-task-button:hover{
+  background: var(--calm-button-background);
+}
+
+@media screen and (max-width: 600px) {
+  .details-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .status-date-container,
+  button {
+    margin: 0.5rem;
+    padding: 0.5rem;
+    font-size: 1.4rem;
+  }
+}
+
+@media screen and (min-width: 601px) and (max-width: 900px) {
+  .status-date-container,
+  button {
+    margin: 1rem;
+    padding: 1rem;
+    font-size: 1.6rem;
+  }
+}

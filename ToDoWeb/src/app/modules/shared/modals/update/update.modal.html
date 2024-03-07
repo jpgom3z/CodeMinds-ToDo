@@ -1,0 +1,23 @@
+<h4 mat-dialog-title style="text-align: center;">Edit Task</h4>
+<mat-dialog-content style="text-align: center;">
+  <mat-form-field style="width: 100%;">
+    <mat-label>Description</mat-label>
+    <input matInput required [(ngModel)]="data.description">
+  </mat-form-field>
+  <mat-form-field style="width: 100%;">
+    <mat-label>Choose a date</mat-label>
+    <input matInput required type="date" [(ngModel)]="data.dueDate">
+    <mat-hint>MM/DD/YYYY</mat-hint>
+  </mat-form-field>
+    <mat-form-field style="width: 100%;">
+      <mat-label>State</mat-label>
+      <select matNativeControl required [(ngModel)]="data.stateId">
+        <option value="1">Pending</option>
+        <option value="2">Completed</option>
+      </select>
+    </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions style="display: flex; justify-content: center;">
+  <button mat-button [mat-dialog-close]="false" (click)="onNoClick()">No Thanks</button>
+  <button mat-button [mat-dialog-close]="data" [disabled]="data.description === '' ||  data.dueDate.toString() === '' || data.stateId === null">Ok</button>
+</mat-dialog-actions>

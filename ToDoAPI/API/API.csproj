@@ -19,12 +19,4 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-    <Folder Include="DataTransferObjects\" />
-    <Folder Include="Mappers\" />
-    <Folder Include="Validators\" />
-    <Folder Include="Services\" />
-  </ItemGroup>
-
 </Project>

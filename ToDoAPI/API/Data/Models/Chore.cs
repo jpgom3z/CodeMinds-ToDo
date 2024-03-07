@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace API.Data.Models;
 
-public partial class Task
+public partial class Chore
 {
     public int Id { get; set; }
 

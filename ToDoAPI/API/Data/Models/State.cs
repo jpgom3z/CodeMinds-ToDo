@@ -9,5 +9,5 @@ public partial class State
 
     public string Name { get; set; } = null!;
 
-    public virtual ICollection<Task> Task { get; set; } = new List<Task>();
+    public virtual ICollection<Chore> Chore { get; set; } = new List<Chore>();
 }
