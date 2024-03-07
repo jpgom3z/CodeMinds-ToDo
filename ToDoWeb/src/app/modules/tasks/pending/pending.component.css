@@ -30,12 +30,27 @@
 }
 
 .status-date-container {
-  background: var(--alert-button-background);
   border: 0;
   margin: 1rem;
   padding: 1rem;
   font-size: 1.8rem;
   border: 0.2rem;
+}
+
+.status {
+  font-weight: bold;
+}
+
+.expired-date {
+  background: var(--alert-button-background);
+}
+
+.almost-expired-date {
+  background: var(--mild-button-background);
+}
+
+.valid-date {
+  background: var(--calm-button-background);
 }
 
 button {

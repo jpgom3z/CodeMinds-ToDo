@@ -29,7 +29,6 @@ export class CreateModal {
   }
 
   onNoClick(): void {
-    // this.dialogRef.close(this.data);
-    console.log(this.data);
+    // console.log(this.data);
   }
 }

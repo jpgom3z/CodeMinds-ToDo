@@ -101,7 +101,24 @@ export class PendingComponent {
     this.snackBar.open(message, actionText, {
       horizontalPosition: this.horizontalPosition,
       verticalPosition: this.verticalPosition,
+      duration: 5000
     })
+  }
+
+  public pendingExpired(date: string){
+
+    const dueDateMS = new Date(date).getTime();
+    let currentDate = new Date();
+    currentDate.setHours(0,0,0,0);
+    let currentDateMS = currentDate.getTime();
+    
+    if(dueDateMS < currentDateMS){
+      return 'expired-date'
+    }else if (dueDateMS == currentDateMS){
+      return 'almost-expired-date'
+    }else {
+      return 'valid-date'
+    }
   }
 
   public ngOnInit(): void {
